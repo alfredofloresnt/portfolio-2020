@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>1482</title>
@@ -9,7 +10,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
     integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
     crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
 <body>
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Alfredo Flores</a>
@@ -40,46 +43,55 @@
     </div>
     <div class="row">
       <div class="col-lg-6 offset-lg-6">
-        <p>¿Quien soy?</p>
+        <p>Educacion</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, est! Architecto esse est ad, atque modi nisi
           provident iusto consectetur explicabo. Quasi ipsa fuga nostrum optio cupiditate similique voluptatem hic.</p>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-24">
-        <h2>Proyectos</h2>
+        <h2>Experiencia</h2>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://cdn.pocket-lint.com/r/s/1200x/assets/images/150379-news-apple-rolls-out-ios-133-and-ipados-133-here-is-whats-150379-image1-vjhrk32dlm.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="https://google.com/" target="_blank" class="btn btn-primary">Ver proyecto</a>
+    <div class="row" id="projects">
+        <div v-for="item in projects" :key="item.title">
+          <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" :src="item.img" alt="Card image cap" height="200px" style="object-fit: cover;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.title }}</h5>
+                  <div id="hide">
+                      <button class="btn btn-primary" v-on:click="item.isHidden = !item.isHidden">Clic para
+                          esconder y
+                          mostrar</button>
+                      <p class="card-text" v-if="!item.isHidden">{{item.description}}</p>
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://cdn.pocket-lint.com/r/s/1200x/assets/images/150379-news-apple-rolls-out-ios-133-and-ipados-133-here-is-whats-150379-image1-vjhrk32dlm.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="https://google.com/" target="_blank" class="btn btn-primary">Ver proyecto</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://cdn.pocket-lint.com/r/s/1200x/assets/images/150379-news-apple-rolls-out-ios-133-and-ipados-133-here-is-whats-150379-image1-vjhrk32dlm.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="https://google.com/" target="_blank" class="btn btn-primary">Ver proyecto</a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
+  <!-- Scripts -->
+  <script>
+    var example1 = new Vue({
+      el: '#projects',
+      data: {
+        projects: [
+          { title: 'Definity First', isHidden: true, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, est! Architecto esse est ad, atque modi nisi provident iusto consectetur explicabo. Quasi ipsa fuga nostrum optio cupiditate similique voluptatem hic.", img: "https://biz.prlog.org/definityfirst/logo.png" },
+          { title: 'Blooders', isHidden: true, description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore", img: "https://s3.amazonaws.com/blooders/blanco_transparente.png" },
+          { title: 'Proyectos independientes', isHidden: true, description: "veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.", img: "https://assets.entrepreneur.com/content/3x2/2000/20170801121054-graphicstock-workspace-with-laptop-male-hands-notebookeyeglasses-sketchbook-black-wooden-desk-with-bamboo-leaf-flat-lay-top-view-office-table-desk-freelancer-working-place-ruvmpjwlol.jpg" },
+          { title: 'Fibraspy', isHidden: true, description: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora", img: "https://fibraspy.com/static/media/fibraspy.688548df.png" },
+        ]
+      }
+    })
+
+  </script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+    integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+    crossorigin="anonymous"></script>
+  <!-- End Sctips -->
 </body>
 
 </html>
